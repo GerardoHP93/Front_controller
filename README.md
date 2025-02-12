@@ -47,6 +47,8 @@ El proyecto está organizado en los siguientes componentes principales:
 
 ## Diagrama de Clases UML
 
+![Diagrama de clases Front Controller](https://github.com/user-attachments/assets/1fad2832-3572-43b5-9201-6c782977e88a)
+
 En este diagrama he representado:
 
 ### Clase Flask
@@ -98,47 +100,3 @@ Relaciones:
 -Las plantillas son una dependencia del sistema
 -El framework Flask mantiene una relación más flexible con el FrontController
 
-```mermaid
-
-classDiagram
-    class Flask {
-        +__name__: str
-        +template_folder: str
-        +route(rule: str)
-        +errorhandler(code: int)
-        +run(debug: bool)
-    }
-
-    class FrontController {
-        -dispatcher: Dispatcher
-        -helper: ViewHelper
-        +__init__()
-        +process_request(path: str): Response
-        -_authenticate(): bool
-        -_authorize(): bool
-    }
-
-    class Dispatcher {
-        -views: dict
-        -helper: ViewHelper
-        +__init__()
-        +dispatch(view_option: str): Response
-    }
-
-    class ViewHelper {
-        +prepare_data(view_name: str): dict
-    }
-
-    class Templates {
-        <<interface>>
-        home.html
-        about.html
-        contact.html
-        404.html
-    }
-
-    FrontController *-- Dispatcher : composición
-    FrontController *-- ViewHelper : composición
-    Dispatcher *-- ViewHelper : composición
-    Dispatcher ..> Templates : dependencia
-    Flask o-- FrontController : agregación
