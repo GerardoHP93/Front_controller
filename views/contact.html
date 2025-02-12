@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Página de {{ title }}</h1>
+    <nav>
+        <a href="/?opcion=home">Inicio</a>
+        <a href="/?opcion=about">Sobre Nosotros</a>
+        <a href="/?opcion=contact">Contacto</a>
+    </nav>
+    <main>
+        <p>{{ content }}</p>
+    </main>
+</body>
+</html>

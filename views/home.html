@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- {{ title }} es una variable que será reemplazada por el valor proporcionado desde el servidor. -->
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Página de {{ title }}</h1>
+    <!-- Encabezado principal de la página, que también usa la variable {{ title }}. -->
+    <nav>
+        <a href="/?opcion=home">Inicio</a>
+        <!-- Enlace a la página de inicio. Al hacer clic, se redirige a la ruta "/?opcion=home". -->
+        <a href="/?opcion=about">Sobre Nosotros</a>
+        <!-- Enlace a la página "Sobre Nosotros". Al hacer clic, se redirige a la ruta "/?opcion=about". -->
+        <a href="/?opcion=contact">Contacto</a>
+        <!-- Enlace a la página de contacto. Al hacer clic, se redirige a la ruta "/?opcion=contact". -->
+    </nav>
+
+    <main>
+        <!-- Etiqueta main: Contiene el contenido principal de la página. -->
+        <p>{{ content }}</p>
+        <!-- Párrafo que muestra el contenido dinámico de la página. -->
+        <!-- {{ content }} es una variable que será reemplazada por el valor proporcionado desde el servidor. -->
+    </main>
+</body>
+</html>
