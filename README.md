@@ -1,4 +1,4 @@
-# Front Controller Pattern Implementation in Python Flask
+# Proyecto de Implementación del Patrón Front Controller usando Flask
 
 ## Autor
 Gerardo Isidro Herrera Pacheco  
@@ -49,7 +49,7 @@ El proyecto está organizado en los siguientes componentes principales:
 
 En este diagrama he representado:
 
--Clase Flask
+###Clase Flask
 Atributos:
 - __name__: str (nombre del módulo)
 - template_folder: str (directorio de plantillas)
@@ -59,7 +59,7 @@ Métodos:
 - errorhandler(code: int): manejador de errores
 - run(debug: bool): iniciar servidor
 
-Clase FrontController
+###Clase FrontController
 Atributos:
 - dispatcher: Dispatcher (instancia del despachador)
 - helper: ViewHelper (instancia del helper)
@@ -70,7 +70,7 @@ Métodos:
 - _authenticate(): verifica autenticación
 - _authorize(): verifica autorización
 
-Clase Dispatcher
+###Clase Dispatcher
 Atributos:
 - views: dict (mapeo de vistas)
 - helper: ViewHelper (instancia del helper)
@@ -79,11 +79,11 @@ Métodos:
 - __init__(): constructor
 - dispatch(view_option: str): despacha vistas
 
-Clase ViewHelper
+###Clase ViewHelper
 Métodos:
 - prepare_data(view_name: str): prepara datos para vistas
 
-Interface Templates
+###Interface Templates
 Representa las plantillas HTML disponibles:
 - home.html
 - about.html
@@ -95,7 +95,12 @@ Relaciones:
 - Dispatcher usa ViewHelper y Templates
 - Flask direcciona las solicitudes a FrontController
 
+Las clases principales tienen una relación fuerte de composición con sus componentes
+Las plantillas son una dependencia del sistema
+El framework Flask mantiene una relación más flexible con el FrontController
+
 ```mermaid
+
 classDiagram
     class Flask {
         +__name__: str
@@ -133,8 +138,8 @@ classDiagram
         404.html
     }
 
-    FrontController --> Dispatcher : uses
-    FrontController --> ViewHelper : uses
-    Dispatcher --> ViewHelper : uses
-    Dispatcher --> Templates : renders
-    Flask --> FrontController : routes requests to
+    FrontController *-- Dispatcher : composición
+    FrontController *-- ViewHelper : composición
+    Dispatcher *-- ViewHelper : composición
+    Dispatcher ..> Templates : dependencia
+    Flask o-- FrontController : agregación
